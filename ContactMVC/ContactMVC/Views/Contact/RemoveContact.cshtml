@@ -1,0 +1,19 @@
+﻿<h1>@ViewBag.Title</h1>
+@if(ViewBag.contacts.Count <=0)
+{
+    <p>No Contacts to Remove</p>
+}
+
+    <form method = "post">
+        @foreach (Contact contact in ViewBag.contacts)
+        {
+            <label>
+                <input type="checkbox" name="contactIds" value="@contact.ContactId" />
+                <!--for value use cheese.CheeseId instead of cheese.Name (to make unique)-->
+                @contact.FirstName
+            </label>
+            <br />
+        }
+        <input type="submit" value="Remove Selected Cheese(s)" />
+
+    </form>

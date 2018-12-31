@@ -1,0 +1,29 @@
+﻿@{
+    
+
+}
+
+<h1>My Cheeses</h1>
+
+<!--To add the data entered from Add form use:
+    asp-controler = "Controler" ("Cheese")
+    asp-action = "Action"  (add)
+    -->
+<p><a asp-controller="Cheese" asp-action="Add"> Add Cheese</a></p>
+
+
+@if (ViewBag.Cheeses.Count == 0)
+{
+    <p> No Cheeses yet!</p>;
+}
+
+<dl>
+    @foreach (KeyValuePair<string,string> cheese in ViewBag.Cheeses)
+    {
+        <dt>@cheese.Key </dt>;
+          <dd>@cheese.Value</dd>;
+      <p></p>
+      <hr/>
+
+    }
+</dl>

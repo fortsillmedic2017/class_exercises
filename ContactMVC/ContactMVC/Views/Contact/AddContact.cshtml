@@ -1,0 +1,29 @@
+﻿<h1>@ViewBag.Title</h1>
+
+
+
+    <form method="post">
+        <label>
+            First Name
+            <input type="text" name="firstName" />
+        </label>
+        <br />
+        <label>
+            Last Name
+            <input type="text" name="lastName" />
+        </label>
+        <br />
+        <label>
+            Address
+            <input type="text" name="address" />
+        </label>
+        <br />
+        <label>
+            Email
+            <input type="email" name="email" />
+        </label>
+        <p></p>
+        <input type="submit" value="Add Address" />
+
+    </form>
+    <p><a asp-controller="Contact" asp-action="Remove">Remove Contact</a></p>

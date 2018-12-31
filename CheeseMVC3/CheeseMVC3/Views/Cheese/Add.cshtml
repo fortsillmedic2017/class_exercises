@@ -1,0 +1,29 @@
+﻿<h1>@ViewBag.title</h1>
+
+<form method="post">
+    <label>
+        Name Of Cheese
+        <br />
+        <input type="text" name="name" />
+    </label>
+    <p></p>
+    <label>
+        Description  Of Cheese
+        <br />
+        <input type="text" name="description" />
+    </label>
+    <p></p>
+    <label>
+        Taste Of Cheese
+        <br />
+        <input type="text" name="taste" />
+    </label>
+    <p></p>
+    <label>
+
+        <input type="submit" value="Add Cheese" />
+    </label>
+</form>
+
+<p><a asp-controller="Cheese" asp-action="Index">List of Cheeses</a></p>
+<p><a asp-controller="Cheese" asp-action="Remove">Remove Cheese</a></p>

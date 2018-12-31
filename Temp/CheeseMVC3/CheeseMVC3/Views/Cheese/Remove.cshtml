@@ -1,0 +1,22 @@
+﻿<h1>@ViewBag.title</h1>
+
+@if (ViewBag.Cheeses.Count <= 0)
+{
+    <p>No Cheeses To Remove.</p>
+}
+<!-- Create form to allow user to check what they want to delete
+     Will create a form for each box you want checked
+-->
+
+<form method="post">
+    @foreach (Cheese cheese in ViewBag.cheeses)
+    {
+        <label>
+            <input type="checkbox" name="cheeseIds" value="@cheese.CheeseId" />
+            <!--for value use cheese.CheeseId instead of cheese.Name (to make unique)-->
+            @cheese.Name
+        </label>
+        <br />
+    }
+    <input type="submit" value="Remove Selected Cheese(s)" />
+</form>
