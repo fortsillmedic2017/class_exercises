@@ -1,29 +1,39 @@
-﻿<h1>@ViewBag.title</h1>
+﻿@model CheeseMVC3.ViewModel.AddCheeseViewModel
 
-<form method="post">
-    <label>
-        Name Of Cheese
-        <br />
-        <input type="text" name="name" />
-    </label>
-    <p></p>
-    <label>
-        Description  Of Cheese
-        <br />
-        <input type="text" name="description" />
-    </label>
-    <p></p>
-    <label>
-        Taste Of Cheese
-        <br />
-        <input type="text" name="taste" />
-    </label>
-    <p></p>
-    <label>
+<style>
+    .error{
+       color:red;
+    }
+</style>
 
-        <input type="submit" value="Add Cheese" />
-    </label>
+<h1>@ViewBag.title</h1>
+
+<form asp-controller="Cheese" asp-action="Add" method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input class="form-control" asp-for="Name" />
+        <span class="error" asp-validation-for="Name"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input class="form-control" asp-for="Description" />
+        <span class="error" asp-validation-for="Description"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Taste"></label>
+        <input class="form-control" asp-for="Taste" />
+        <span class="error" asp-validation-for="Taste"></span>
+    </div>.
+    <div class="form-group">
+        <label asp-for="Type">Type</label>
+        <select  asp-for="Type" asp-items="Model.CheeseTypes"></select>
+    </div>
+    
+    
+    <input type="submit" value="Add Cheese" />
+
 </form>
-
+<p></p>
 <p><a asp-controller="Cheese" asp-action="Index">List of Cheeses</a></p>
 <p><a asp-controller="Cheese" asp-action="Remove">Remove Cheese</a></p>

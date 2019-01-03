@@ -10,6 +10,8 @@ namespace CheeseMVC3.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string Taste { get; set; }
+        public CheeseType Type { get; set; }
+
         public int CheeseId { get; set; }      //helps make each object unique
         private static int nextId = 1;
 

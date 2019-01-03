@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CheeseMVC3.Models;         //Pulled in the Cheese class
+using CheeseMVC3.ViewModel;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,45 +16,39 @@ namespace CheeseMVC3.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            ViewBag.cheeses = CheeseData.GetAll();  //Get from CheeseData Class*******
             ViewBag.title = "My Cheese";
-            return View();
+            List<Cheese> cheeses = CheeseData.GetAll();                     
+            return View(cheeses);
         }
 
         //(FORM) to input Cheeses (Just Display form)
-        [HttpGet]
+        
         public IActionResult Add()
         {
             ViewBag.title = "Add Cheese";
-            return View();
+            AddCheeseViewModel addCheeseViewModel = new AddCheeseViewModel();
+            return View(addCheeseViewModel);
         }
 
-        //This will take data entered from form and Add it to Dictionary
-
+       
         [HttpPost]
-        [Route("/Cheese/Add")]
-        //get info from Cheese Model file Cheese class
-
-        /*//METHOD BINDING:
-          don't have to write: NewCheese(string name, string description)
-          {
-             Name = name;
-             Description =description;
-
-            Cheese.Add(newCheese);
-          }
-
-          Just creating a Instance of Cheese and placing it as a parameter of
-          IActionResult(Cheese newCheese) it will look for data entered
-           from form and compare it to the fields in the Cheese class
-        */
-        public IActionResult NewCheese(Cheese newCheese)
+        public IActionResult Add(AddCheeseViewModel addCheeseViewModel)
         {
-            //Get new cheese from CheeseData class Add method*******
-            CheeseData.Add(newCheese);
+            if (ModelState.IsValid)
+            {
+                //Add the new cheese to my exsiting list
+                Cheese newCheese = new Cheese
+                {
+                    Name = addCheeseViewModel.Name,
+                    Description = addCheeseViewModel.Description,
+                    Taste = addCheeseViewModel.Taste,
+                    Type = addCheeseViewModel.Type
+                };
+                CheeseData.Add(newCheese);
+                return Redirect("/Cheese");
+            }
 
-            //will see data on /Cheese page
-            return Redirect("/Cheese");
+            return View(addCheeseViewModel);
         }
 
         public IActionResult Remove()
