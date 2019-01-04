@@ -10,12 +10,9 @@
 
 <form method="post">
     @foreach (Cheese cheese in ViewBag.cheeses)
-    {
-        <label>
-            <input type="checkbox" name="cheeseIds" value="@cheese.CheeseId" />
-            <!--for value use cheese.CheeseId instead of cheese.Name (to make unique)-->
-            @cheese.Name
-        </label>
+    {       
+            <input type="checkbox" name="cheeseIds" id="cheese.ID" value="@cheese.ID" />
+            <label for="cheese.ID">  @cheese.Name</label>
         <br />
     }
     <input type="submit" value="Remove Selected Cheese(s)" />
